@@ -1,0 +1,4 @@
+interface:
+  display_name: "Performance"
+  short_description: "Profile and optimize my-axum performance safely."
+  default_prompt: "Use $performance to investigate and improve my-axum performance with measurements, targeted code changes, tests, and validation."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refactor"
+  short_description: "Refactor my-axum code safely and idiomatically."
+  default_prompt: "Use $refactor to refactor my-axum code while preserving behavior, tests, and repository conventions."

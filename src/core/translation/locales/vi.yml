@@ -1,0 +1,79 @@
+_version: 1
+authorization:
+  header_not_found: "Tiêu đề Authorization không được tìm thấy"
+  invalid_header: "Tiêu đề Authorization không hợp lệ"
+  invalid_token_format: "Định dạng token không hợp lệ"
+  invalid_token: "Token không hợp lệ"
+  user_not_found: "Không tìm thấy người dùng"
+  token_not_found: "Không tìm thấy token xác thực"
+  role_required: "Cần quyền %{role}"
+  role:
+    admin: "Quản trị viên"
+    user: "Người dùng"
+
+language:
+  invalid_header: "Tiêu đề Accept-Language không hợp lệ"
+
+auth:
+  email_not_registered: "Email chưa được đăng ký"
+  password_incorrect: "Mật khẩu không chính xác"
+  user_not_found: "Không tìm thấy người dùng"
+  user_not_authenticated: "Người dùng chưa được xác thực"
+  refresh_token_invalid: "Refresh token không hợp lệ hoặc đã hết hạn"
+  refresh_token_required: "Refresh token là bắt buộc"
+  access_token_not_found: "Không tìm thấy access token"
+  invalid_email_or_otp: "Email hoặc mã OTP không hợp lệ"
+  otp_expired: "Mã OTP đã hết hạn. Vui lòng yêu cầu mã mới."
+  otp_max_attempts_exceeded: "Đã vượt quá số lần thử (%{max}). Vui lòng yêu cầu mã OTP mới."
+
+user:
+  not_found: "Không tìm thấy người dùng"
+  not_found_with_id: "Không tìm thấy người dùng với id {{id}}"
+  email_already_in_use: "Địa chỉ email đã tồn tại"
+  invalid_id_format: "Định dạng ID người dùng không hợp lệ"
+  convert_model_failed: "Không thể chuyển đổi dữ liệu người dùng"
+  validation:
+    email_required: "Email là bắt buộc"
+    email_invalid_format: "Định dạng email không hợp lệ"
+    password_required: "Mật khẩu là bắt buộc"
+
+email:
+  prepare_failed: "Không thể chuẩn bị email"
+  send_failed: "Không thể gửi email"
+  service_unavailable: "Dịch vụ email không khả dụng"
+
+common:
+  request_body_must_be_json: "Nội dung yêu cầu phải là JSON object"
+  invalid_request_body: "Nội dung yêu cầu không hợp lệ: %{error}"
+  serialize_error_failed: "Không thể chuyển lỗi sang định dạng JSON"
+  internal_server_error: "Lỗi máy chủ nội bộ: %{error}"
+
+avatar_upload:
+  progress:
+    validating_file: "Đang kiểm tra tệp..."
+    preparing_upload: "Đang chuẩn bị tải lên..."
+    processing_image: "Đang xử lý ảnh..."
+    optimizing: "Đang tối ưu..."
+    finalizing: "Đang hoàn tất..."
+    upload_complete: "Tải lên hoàn tất!"
+    uploaded_successfully: "Đã tải lên ảnh đại diện '%{file_name}' thành công!"
+
+assistant:
+  validation:
+    message_required: "Tin nhắn là bắt buộc"
+    message_too_long: "Tin nhắn tối đa %{max} ký tự"
+    context_too_many_messages: "Ngữ cảnh hội thoại chỉ được tối đa %{max} tin nhắn"
+    context_message_too_long: "Mỗi tin nhắn trong ngữ cảnh tối đa %{max} ký tự"
+  config:
+    openai_api_key_missing: "OPENAI_API_KEY chưa được cấu hình"
+  error:
+    openai_request_failed: "Mình đang gặp trục trặc tạm thời, bạn thử lại giúp mình nhé"
+    openai_response_missing_text: "Mình chưa nhận được câu trả lời phù hợp, bạn thử lại giúp mình nhé"
+    model_output_not_json: "Mình chưa xử lý được yêu cầu này theo cách mong muốn"
+    unsupported_api_method: "Mình chưa thể thực hiện thao tác này"
+    api_call_not_in_openapi: "Mình chưa thể thực hiện yêu cầu này lúc này"
+  response:
+    done: "Xong rồi."
+    need_more_information: "Mình cần thêm một chút thông tin để giúp bạn."
+    failure_with_message: "Mình chưa thực hiện được yêu cầu này: %{message}"
+    failure: "Mình chưa thực hiện được yêu cầu này. Bạn thử lại giúp mình nhé."

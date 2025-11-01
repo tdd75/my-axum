@@ -1,0 +1,79 @@
+_version: 1
+authorization:
+  header_not_found: "Authorization header not found"
+  invalid_header: "Invalid Authorization header"
+  invalid_token_format: "Invalid token format"
+  invalid_token: "Invalid token"
+  user_not_found: "User not found"
+  token_not_found: "Authentication token not found"
+  role_required: "%{role} role is required"
+  role:
+    admin: "Admin"
+    user: "User"
+
+language:
+  invalid_header: "Invalid Accept-Language header"
+
+auth:
+  email_not_registered: "Email has not been registered"
+  password_incorrect: "Password is incorrect"
+  user_not_found: "User not found"
+  user_not_authenticated: "User is not authenticated"
+  refresh_token_invalid: "Refresh token is invalid or expired"
+  refresh_token_required: "Refresh token is required"
+  access_token_not_found: "Access token not found"
+  invalid_email_or_otp: "Invalid email or OTP code"
+  otp_expired: "OTP code has expired. Please request a new one."
+  otp_max_attempts_exceeded: "Maximum attempts (%{max}) exceeded. Please request a new OTP code."
+
+user:
+  not_found: "User not found"
+  not_found_with_id: "User with id {{id}} not found"
+  email_already_in_use: "Email address already exists"
+  invalid_id_format: "Invalid user ID format"
+  convert_model_failed: "Failed to convert user model to DTO"
+  validation:
+    email_required: "Email is required"
+    email_invalid_format: "Invalid email format"
+    password_required: "Password is required"
+
+email:
+  prepare_failed: "Failed to prepare email"
+  send_failed: "Failed to send email"
+  service_unavailable: "Email service unavailable"
+
+common:
+  request_body_must_be_json: "Request body must be a JSON object"
+  invalid_request_body: "Invalid request body: %{error}"
+  serialize_error_failed: "Failed to serialize error"
+  internal_server_error: "Internal Server Error: %{error}"
+
+avatar_upload:
+  progress:
+    validating_file: "Validating file..."
+    preparing_upload: "Preparing upload..."
+    processing_image: "Processing image..."
+    optimizing: "Optimizing..."
+    finalizing: "Finalizing..."
+    upload_complete: "Upload complete!"
+    uploaded_successfully: "Avatar '%{file_name}' uploaded successfully!"
+
+assistant:
+  validation:
+    message_required: "Message is required"
+    message_too_long: "Message must be at most %{max} characters"
+    context_too_many_messages: "Conversation context must include at most %{max} messages"
+    context_message_too_long: "Each context message must be at most %{max} characters"
+  config:
+    openai_api_key_missing: "OPENAI_API_KEY is not configured"
+  error:
+    openai_request_failed: "I ran into a temporary issue. Please try again."
+    openai_response_missing_text: "I couldn't get a clear reply this time. Please try again."
+    model_output_not_json: "I couldn't process this request in the expected way."
+    unsupported_api_method: "I can't perform that action right now."
+    api_call_not_in_openapi: "I can't complete that request right now."
+  response:
+    done: "Done."
+    need_more_information: "I need a bit more information to help with that."
+    failure_with_message: "I couldn't complete that: %{message}"
+    failure: "I couldn't complete that. Please try again."

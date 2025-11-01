@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test"
+  short_description: "Raise my-axum line coverage above 90%."
+  default_prompt: "Use $test to run make test-cov, inspect line coverage, add focused tests when coverage is below 90%, and rerun coverage validation."

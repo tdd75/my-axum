@@ -1,0 +1,23 @@
+_version: 1
+authorization:
+  header_not_found: "Authorization header not found"
+  invalid_header: "Invalid Authorization header"
+  invalid_token_format: "Invalid token format"
+  invalid_token: "Invalid token"
+  user_not_found: "User not found"
+  token_not_found: "Authentication token not found"
+
+language:
+  invalid_header: "Invalid Accept-Language header"
+
+auth:
+  email_not_registered: "Email has not been registered"
+  password_incorrect: "Password is incorrect"
+  user_not_found: "User not found"
+  refresh_token_invalid: "Refresh token is invalid or expired"
+  refresh_token_required: "Refresh token is required"
+
+user:
+  not_found: "User not found"
+  not_found_with_id: "User with id {{id}} not found"
+  email_already_in_use: "Email address already exists"

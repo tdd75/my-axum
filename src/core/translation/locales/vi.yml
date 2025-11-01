@@ -1,0 +1,23 @@
+_version: 1
+authorization:
+  header_not_found: "Tiêu đề Authorization không được tìm thấy"
+  invalid_header: "Tiêu đề Authorization không hợp lệ"
+  invalid_token_format: "Định dạng token không hợp lệ"
+  invalid_token: "Token không hợp lệ"
+  user_not_found: "Không tìm thấy người dùng"
+  token_not_found: "Không tìm thấy token xác thực"
+
+language:
+  invalid_header: "Tiêu đề Accept-Language không hợp lệ"
+
+auth:
+  email_not_registered: "Email chưa được đăng ký"
+  password_incorrect: "Mật khẩu không chính xác"
+  user_not_found: "Không tìm thấy người dùng"
+  refresh_token_invalid: "Refresh token không hợp lệ hoặc đã hết hạn"
+  refresh_token_required: "Refresh token là bắt buộc"
+
+user:
+  not_found: "Không tìm thấy người dùng"
+  not_found_with_id: "Không tìm thấy người dùng với id {{id}}"
+  email_already_in_use: "Địa chỉ email đã tồn tại"

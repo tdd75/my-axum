@@ -1,0 +1,7 @@
+mod test_create_user_use_case;
+mod test_delete_user_use_case;
+mod test_get_user_use_case;
+mod test_search_user_use_case;
+mod test_sync_user_data_use_case;
+mod test_update_user_use_case;
+mod test_upload_avatar_use_case;

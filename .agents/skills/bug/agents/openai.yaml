@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bug"
+  short_description: "Debug and fix my-axum defects safely."
+  default_prompt: "Use $bug to reproduce, diagnose, fix, test, and validate a bug in my-axum while preserving existing behavior."

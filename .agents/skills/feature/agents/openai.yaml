@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature"
+  short_description: "Implement features in my-axum using repository conventions."
+  default_prompt: "Use $feature to add a feature to my-axum end to end, including code, localization, tests, and validation."

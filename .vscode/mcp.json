@@ -1,0 +1,19 @@
+{
+    "inputs": [
+        {
+            "id": "bearer_token",
+            "type": "promptString",
+            "description": "Enter the Bearer token for authentication with the MCP server.",
+            "password": true
+        }
+    ],
+    "servers": {
+        "my-axum": {
+            "type": "http",
+            "url": "http://localhost:8000/mcp",
+            "headers": {
+                "Authorization": "Bearer ${input:bearer_token}"
+            }
+        }
+    }
+}

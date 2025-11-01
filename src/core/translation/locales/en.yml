@@ -1,0 +1,76 @@
+_version: 1
+authorization:
+  header_not_found: "Authorization header not found"
+  invalid_header: "Invalid Authorization header"
+  invalid_token_format: "Invalid token format"
+  invalid_token: "Invalid token"
+  user_not_found: "User not found"
+  token_not_found: "Authentication token not found"
+  role_required: "%{role} role is required"
+  role:
+    admin: "Admin"
+    user: "User"
+
+language:
+  invalid_header: "Invalid Accept-Language header"
+
+auth:
+  email_not_registered: "Email has not been registered"
+  password_incorrect: "Password is incorrect"
+  user_not_found: "User not found"
+  user_not_authenticated: "User is not authenticated"
+  refresh_token_invalid: "Refresh token is invalid or expired"
+  refresh_token_required: "Refresh token is required"
+  access_token_not_found: "Access token not found"
+  invalid_email_or_otp: "Invalid email or OTP code"
+  otp_expired: "OTP code has expired. Please request a new one."
+  otp_max_attempts_exceeded: "Maximum attempts (%{max}) exceeded. Please request a new OTP code."
+
+user:
+  not_found: "User not found"
+  not_found_with_id: "User with id {{id}} not found"
+  email_already_in_use: "Email address already exists"
+  invalid_id_format: "Invalid user ID format"
+  convert_model_failed: "Failed to convert user model to DTO"
+  validation:
+    email_required: "Email is required"
+    email_invalid_format: "Invalid email format"
+    password_required: "Password is required"
+
+email:
+  prepare_failed: "Failed to prepare email"
+  send_failed: "Failed to send email"
+  service_unavailable: "Email service unavailable"
+
+common:
+  request_body_must_be_json: "Request body must be a JSON object"
+  invalid_request_body: "Invalid request body: %{error}"
+  serialize_error_failed: "Failed to serialize error"
+  internal_server_error: "Internal Server Error: %{error}"
+
+mcp:
+  instructions: "Use these read-only tools to inspect data exposed by the My Axum API. Admin-only data requires an admin access token."
+  error:
+    parse: "Invalid JSON-RPC payload"
+    invalid_request: "Invalid JSON-RPC request"
+    method_required: "JSON-RPC method is required"
+    method_not_found: "MCP method '%{method}' was not found"
+    invalid_params_with_error: "Invalid MCP params: %{error}"
+    tool_not_found: "MCP tool '%{tool}' was not found"
+    internal: "MCP request failed"
+  tool:
+    get_current_user_profile:
+      description: "Return the authenticated user's profile."
+    search_users:
+      description: "Search users by email, name, pagination, and ordering. Requires Admin role."
+    get_user:
+      description: "Return one user by id. Requires Admin role."
+avatar_upload:
+  progress:
+    validating_file: "Validating file..."
+    preparing_upload: "Preparing upload..."
+    processing_image: "Processing image..."
+    optimizing: "Optimizing..."
+    finalizing: "Finalizing..."
+    upload_complete: "Upload complete!"
+    uploaded_successfully: "Avatar '%{file_name}' uploaded successfully!"

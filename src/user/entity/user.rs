@@ -1,0 +1,46 @@
+use super::sea_orm_active_enums::UserRole;
+use sea_orm::entity::prelude::*;
+
+#[sea_orm::model]
+#[derive(Clone, Debug, PartialEq, Eq, DeriveEntityModel)]
+#[sea_orm(table_name = "user")]
+pub struct Model {
+    #[sea_orm(primary_key)]
+    pub id: i32,
+    #[sea_orm(unique)]
+    pub email: String,
+    pub password: String,
+    pub first_name: Option<String>,
+    pub last_name: Option<String>,
+    pub phone: Option<String>,
+    pub created_at: Option<DateTime>,
+    pub updated_at: Option<DateTime>,
+    pub created_user_id: Option<i32>,
+    pub updated_user_id: Option<i32>,
+    #[sea_orm(default_value = "user")]
+    pub role: UserRole,
+    #[sea_orm(has_many)]
+    pub password_reset_tokens: HasMany<super::password_reset_token::Entity>,
+    #[sea_orm(has_many)]
+    pub refresh_tokens: HasMany<super::refresh_token::Entity>,
+    #[sea_orm(
+        self_ref,
+        relation_enum = "SelfRef2",
+        from = "created_user_id",
+        to = "id",
+        on_update = "NoAction",
+        on_delete = "Cascade"
+    )]
+    pub user_2: HasOne<Entity>,
+    #[sea_orm(
+        self_ref,
+        relation_enum = "SelfRef1",
+        from = "updated_user_id",
+        to = "id",
+        on_update = "NoAction",
+        on_delete = "Cascade"
+    )]
+    pub user_1: HasOne<Entity>,
+}
+
+impl ActiveModelBehavior for ActiveModel {}

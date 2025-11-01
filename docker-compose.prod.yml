@@ -1,0 +1,143 @@
+services:
+  axum: &axum
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - JWT_SECRET=very-secured-secret
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/my_axum
+      - REDIS_URL=redis://redis:6379
+      - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+      - KAFKA_BROKERS=kafka:9092
+      - MESSAGE_BROKER=redis
+      # - APP_URL=https://my_axum.com
+      # - SMTP_USER=smtp_user@example.com
+      # - SMTP_PASSWORD=smtp_password
+      # - ALLOWED_ORIGINS=https://my_axum.com,https://www.my_axum.com
+    volumes:
+      - ./logs:/app/logs
+    command:
+      - bash
+      - -c
+      - |
+        sea-orm-cli migrate up
+        /app/seed
+        RUST_LOG=info,sqlx::query=warn,rdkafka=warn APP_HOST=0.0.0.0 /app/my-axum
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
+    ports:
+      - "8000:8000"
+    depends_on:
+      - axum
+
+  worker:
+    <<: *axum
+    volumes:
+      - ./logs:/app/logs
+    command:
+      - bash
+      - -c
+      - |
+        /app/worker
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=my_axum
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./data/postgres:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 3s
+      timeout: 10s
+      retries: 10
+      start_period: 15s
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  # rabbitmq:
+  #   image: rabbitmq:latest
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: guest
+  #     RABBITMQ_DEFAULT_PASS: guest
+  #   volumes:
+  #     - ./data/rabbitmq:/var/lib/rabbitmq
+  #   command:
+  #     - bash
+  #     - -c
+  #     - |
+  #       rabbitmq-plugins enable rabbitmq_management
+  #       rabbitmq-server
+  #   healthcheck:
+  #     test: ["CMD", "rabbitmq-diagnostics", "ping"]
+  #     interval: 10s
+  #     timeout: 10s
+  #     retries: 10
+  #     start_period: 45s
+
+  # kafka:
+  #   image: apache/kafka:latest
+  #   ports:
+  #     - "9092:9092"
+  #   environment:
+  #     KAFKA_NODE_ID: 1
+  #     KAFKA_PROCESS_ROLES: broker,controller
+  #     KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+  #     KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+  #     KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+  #     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+  #     KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+  #     KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+  #     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  #     KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+  #     KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+  #     KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+  #   volumes:
+  #     - ./data/kafka:/var/lib/kafka/data
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "nc -z localhost 9092 || exit 1"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 10
+  #     start_period: 40s
+
+  # kafka-ui:
+  #   image: provectuslabs/kafka-ui:latest
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     DYNAMIC_CONFIG_ENABLED: "true"
+  #     KAFKA_CLUSTERS_0_NAME: local
+  #     KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy

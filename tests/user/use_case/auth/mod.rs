@@ -1,0 +1,9 @@
+mod test_change_password_use_case;
+mod test_forgot_password_use_case;
+mod test_get_profile_use_case;
+mod test_login_use_case;
+mod test_logout_use_case;
+mod test_refresh_token_use_case;
+mod test_register_use_case;
+mod test_reset_password_use_case;
+mod test_update_profile_use_case;
